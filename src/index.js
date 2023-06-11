@@ -4,18 +4,6 @@ require('dotenv').config();
 const PredictionService = require('./services/PredictionService');
 const tfjs = require('@tensorflow/tfjs');
 
-/**
-Black Pepper
-Candlenut
-Chili
-Cinnamon
-Garlic
-Rosemary
-Star Anise
-Turmeric
-White Pepper
-*/
-
 const main = async () => {
   const app = express();
   const model = await tfjs.loadLayersModel('https://storage.googleapis.com/masaala-stream-bq/masaala-model/tfjs/model.json');
