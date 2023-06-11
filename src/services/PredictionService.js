@@ -10,9 +10,15 @@ class PredictionService {
     PredictionService.instance = this;
   }
 
-  imageToTensor(image) {
-    const tensorImage = tfjs.browser.fromPixels(image).toFloat().div(255.0).expandDims();
-    return tensorImage;
+  imageToTensor(imageData) {
+    const tensorImage = tfjs.tensor3d(imageData.data, [224, 224, 4], 'float32');
+    console.log(imageData.data);
+    const normalizedTensorImage = tensorImage.slice([0, 0, 0], [224, 224, 3]).div(tfjs.scalar(255));
+
+    // Mengubah dimensi tensor menjadi bentuk yang sesuai dengan input model
+    const reshapedTensorImage = normalizedTensorImage.expandDims();
+
+    return reshapedTensorImage;
   }
 
   async predictImage(image) {
