@@ -14,7 +14,7 @@ const main = async () => {
   app.use(spiceRouter);
 
   const port = Number(process.env.SERVER_PORT) || 8080;
-  app.listen(port, () => {
+  app.listen(port, '0.0.0.0', () => {
     console.log(`serve
     r running on ${port}`);
   });
